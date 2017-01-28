@@ -165,9 +165,9 @@ def process_bounce(message, notification):
             bounce_type=bounce['bounceType'],
             bounce_subtype=bounce['bounceSubType'],
             reporting_mta=bounce.get('reportingMTA'),
-            action=recipient.get('action'),
-            status=recipient.get('status'),
-            diagnostic_code=recipient.get('diagnosticCode')
+            action=recipient.get('action','')[:150],
+            status=recipient.get('status')[:150],
+            diagnostic_code=recipient.get('diagnosticCode','')[:5000]
         )]
 
     # Send signals for each bounce.
@@ -207,7 +207,7 @@ def process_complaint(message, notification):
             feedback_id=complaint['feedbackId'],
             feedback_timestamp=clean_time(complaint['timestamp']),
             useragent=complaint.get('userAgent'),
-            feedback_type=complaint.get('complaintFeedbackType'),
+            feedback_type=complaint.get('complaintFeedbackType','')[:150],
             arrival_date=arrival_date
         )]
 
