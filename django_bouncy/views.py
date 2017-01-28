@@ -166,7 +166,7 @@ def process_bounce(message, notification):
             bounce_subtype=bounce['bounceSubType'],
             reporting_mta=bounce.get('reportingMTA'),
             action=recipient.get('action','')[:150],
-            status=recipient.get('status')[:150],
+            status=recipient.get('status','')[:150],
             diagnostic_code=recipient.get('diagnosticCode','')[:5000]
         )]
 
